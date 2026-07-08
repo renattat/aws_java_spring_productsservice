@@ -1,5 +1,6 @@
 package renat.aws.productservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import renat.aws.productservice.products.models.Product;
 
 public record ProductDto(
@@ -7,11 +8,15 @@ public record ProductDto(
         String name,
         String code,
         float price,
-        String model
+        String model,
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        String url
 ) {
 
     public ProductDto(Product product) {
-        this(product.getId(), product.getProductName(), product.getCode(), product.getPrice(), product.getModel());
+        this(product.getId(), product.getProductName(),
+                product.getCode(), product.getPrice(),
+                product.getModel(), product.getProductUrl());
     }
 
     static public Product toProduct(ProductDto productDto) {
@@ -21,6 +26,7 @@ public record ProductDto(
         product.setCode(productDto.code());
         product.setModel(productDto.model());
         product.setPrice(productDto.price());
+        product.setProductUrl(productDto.url());
         return product;
     }
 
