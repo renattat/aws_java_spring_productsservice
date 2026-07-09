@@ -1,5 +1,6 @@
 package renat.aws.productservice.products.controllers;
 
+import com.amazonaws.xray.spring.aop.XRayEnabled;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.concurrent.CompletionException;
 
 @RestController
 @RequestMapping("/api/products")
+@XRayEnabled
 public class ProductController {
 
     private final ProductsRepository productsRepository;
