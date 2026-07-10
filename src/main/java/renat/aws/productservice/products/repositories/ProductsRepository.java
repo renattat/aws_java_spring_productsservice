@@ -1,8 +1,11 @@
 package renat.aws.productservice.products.repositories;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
+import renat.aws.productservice.products.controllers.ProductController;
 import renat.aws.productservice.products.models.Product;
 import software.amazon.awssdk.enhanced.dynamodb.*;
 import software.amazon.awssdk.enhanced.dynamodb.model.PagePublisher;
@@ -12,6 +15,8 @@ import java.util.concurrent.CompletableFuture;
 
 @Repository
 public class ProductsRepository {
+
+    private static final Logger LOG = LogManager.getLogger(ProductsRepository.class);
 
     private final DynamoDbEnhancedAsyncClient dynamoDbEnhancedAsyncClient;
 
@@ -31,6 +36,7 @@ public class ProductsRepository {
     }
 
     public CompletableFuture<Product> getById(String productId) {
+        LOG.info("ProductId: {}", productId);
         return productsTable.getItem(Key.builder()
                     .partitionValue(productId)
                 .build());
