@@ -1,4 +1,4 @@
-package renat.aws.productservice.dto;
+package renat.aws.productservice.products.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import renat.aws.productservice.products.models.Product;
