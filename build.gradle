@@ -25,6 +25,8 @@ dependencies {
 	implementation(platform("software.amazon.awssdk:bom:2.21.15"))
 	implementation("software.amazon.awssdk:dynamodb")
 	implementation("software.amazon.awssdk:dynamodb-enhanced")
+	implementation("software.amazon.awssdk:sns")
+
 
 	implementation("com.amazonaws:aws-xray-recorder-sdk-spring:2.14.0")
 	implementation("com.amazonaws:aws-xray-recorder-sdk-aws-sdk-v2:2.14.0")
@@ -56,12 +58,12 @@ tasks.register('buildDockerImage', Exec) {
 
 	// 2. Run the docker build command
 	workingDir project.rootDir
-	commandLine 'docker', 'build', '-t', 'productsservice:1.6.0', '.'
+	commandLine 'docker', 'build', '-t', 'productsservice:1.7.0', '.'
 }
 
 // to push docker image to ECR
 // aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 520070583504.dkr.ecr.us-east-1.amazonaws.com
 // docker tag productsservice:1.2.0 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.2.0
-// docker push 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.6.0
+// docker push 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.7.0
 
-// aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 520070583504.dkr.ecr.us-east-1.amazonaws.com && docker tag productsservice:1.6.0 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.6.0 && docker push 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.6.0
+// aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 520070583504.dkr.ecr.us-east-1.amazonaws.com && docker tag productsservice:1.7.0 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.7.0 && docker push 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.7.0
