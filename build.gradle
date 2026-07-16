@@ -58,12 +58,12 @@ tasks.register('buildDockerImage', Exec) {
 
 	// 2. Run the docker build command
 	workingDir project.rootDir
-	commandLine 'docker', 'build', '-t', 'productsservice:1.7.0', '.'
+	commandLine 'docker', 'build', '-t', 'productsservice:1.8.0', '.'
 }
 
 // to push docker image to ECR
 // aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 520070583504.dkr.ecr.us-east-1.amazonaws.com
 // docker tag productsservice:1.2.0 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.2.0
-// docker push 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.7.0
+// docker push 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.8.0
 
-// aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 520070583504.dkr.ecr.us-east-1.amazonaws.com && docker tag productsservice:1.7.0 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.7.0 && docker push 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.7.0
+// aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 520070583504.dkr.ecr.us-east-1.amazonaws.com && docker tag productsservice:1.8.0 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.8.0 && docker push 520070583504.dkr.ecr.us-east-1.amazonaws.com/productsservice:1.8.0

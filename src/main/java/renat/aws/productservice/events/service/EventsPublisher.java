@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import renat.aws.productservice.events.dto.EventType;
 import renat.aws.productservice.events.dto.ProductEventDto;
+import renat.aws.productservice.events.dto.ProductFailureEventDto;
 import renat.aws.productservice.products.models.Product;
 import software.amazon.awssdk.services.sns.SnsAsyncClient;
 import software.amazon.awssdk.services.sns.model.MessageAttributeValue;
@@ -36,6 +37,10 @@ public class EventsPublisher {
         this.snsAsyncClient = snsAsyncClient;
         this.productEventsTopic = productEventsTopic;
         this.objectMapper = objectMapper;
+    }
+
+    public CompletableFuture<PublishResponse> sendProductFailureEvent(ProductFailureEventDto productFailureEventDto) throws JsonProcessingException {
+        return this.sendEvent(objectMapper.writeValueAsString(productFailureEventDto), EventType.PRODUCT_FAILURE);
     }
 
     public CompletableFuture<PublishResponse> sendProductEvent(Product product, EventType eventType, String email) throws JsonProcessingException {
